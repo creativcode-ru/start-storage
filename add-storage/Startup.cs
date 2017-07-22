@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using add_storage.Repositories;
 
 namespace add_storage
 {
@@ -16,8 +17,9 @@ namespace add_storage
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                //.AddJsonFile("config.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -27,9 +29,19 @@ namespace add_storage
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /*Поскольку ядро ASP.NET MVC обеспечивает инжекцию по умолчанию, 
+             * нам необходимо зарегистрировать класс TableClientOperationsService в контейнере, используя IServiceCollection. 
+             * Нам нужно зарегистрировать IConfigurationRoot в контейнере, чтобы он мог обеспечить доступ к ключам из файлов JSON в проекте*/
+            services.AddSingleton(typeof(ITableRepositories), typeof(TableClientOperationsService));
+            services.AddSingleton<IConfigurationRoot>(Configuration);
+            services.AddMvc();
+
+
             // Add framework services.
             services.AddMvc();
         }
+
+        /**/
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
