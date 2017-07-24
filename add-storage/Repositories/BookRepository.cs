@@ -38,24 +38,23 @@ namespace add_storage.Repositories
 
         //5.
         /* Конструктор класса играет очень важную роль. 
-          Он вводится объектом IConfigurationRoot, чтобы он мог читать ключи из файла config.json. 
+          Он вводится объектом IConfigurationRoot, чтобы он мог читать ключи кокфигурации. 
           IConfigurationRoot считывает строку подключения хранилища на основе ключа, 
-          то есть MicrosoftAzureStorage:start1storage_AzureStorageConnectionString. 
+          то есть ConnectionStrings:start1storage_AzureStorageConnectionString. 
+
           Код создает экземпляр учетной записи хранилища на основе строки подключения. 
           Код создает экземпляр клиента таблицы и создает таблицу имени Book, если она еще не существует.*/
         public TableClientOperationsService(IConfigurationRoot c)
         {
             this.configs = c;
-            var connStr = this.configs.GetSection("MicrosoftAzureStorage:start1storage_AzureStorageConnectionString");
-            connStr.Value = "DefaultEndpointsProtocol=https;AccountName=start1storage;AccountKey=ng6oXAdPv9xmCxttdd7sTJk7dsOdn07sAX1bmMmQX0z52Ksq0vCQ/ybIjyX+LcicR3BEymVR9MO3zrDq4ZeFIw==";
-            storageAccount = CloudStorageAccount.Parse(connStr.Value);
-     //       CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-     //CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+            var connStr = this.configs.GetSection("ConnectionStrings:start1storage_AzureStorageConnectionString");
+            storageAccount = CloudStorageAccount.Parse(connStr.Value);//учетная запись хранилища
 
             tableClient = storageAccount.CreateCloudTableClient();
-            CloudTable table = tableClient.GetTableReference("Book");
-            table.CreateIfNotExists();
+            CloudTable table = tableClient.GetTableReference("Book"); //экземпляр клиента таблицы
+            table.CreateIfNotExists();//создает таблицу Book, если она еще не существует
         }
+
         //6.
         /* Метод CreateBook добавляет новую запись в таблицу*/
         public void CreateBook(Book bk)

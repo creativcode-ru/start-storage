@@ -1,0 +1,13 @@
+﻿Добавьте в проект файл конфигурации appsettings.json (автоматически добавляется в Connected Servise)
+
+{
+  "Logging": {
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "ConnectionStrings": {
+    "start1storage_AzureStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=start1storage;AccountKey=здесь_ваш_ключь"
+  }
+}
