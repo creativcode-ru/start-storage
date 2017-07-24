@@ -70,7 +70,11 @@ namespace DIApp.Controllers
             return Content(env.ContentRootPath);
         }
 
-
+        //пример внедрения зависимостей сразу в представление
+        public IActionResult Msg()
+        {
+            return View();
+        }
 
         /*
         public IActionResult Index()

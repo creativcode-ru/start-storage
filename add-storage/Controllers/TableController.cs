@@ -11,13 +11,6 @@ using add_storage.Models;
 namespace add_storage.Controllers
 {
 
-    /*Класс контроллера инъецируется ITableRepositories, который зарегистрирован в Injection Dependency. 
-      Это обеспечивает экземпляр класса TableClientOperationsService. 
-      Метод действия Index () обращается к методу GetBooks () класса TableClientOperationsService для чтения всех книг. 
-      Метод Create () с атрибутом HttpPost используется для создания новой книги в хранилище 
-      с использованием метода CreateBook () класса TableClientOperationsService
-    */
-
     public class TableController : Controller
     {
 
@@ -33,16 +26,18 @@ namespace add_storage.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var books = serv.GetBooks();
+            var books = serv.GetBooks(); //TableClientOperationsService.GetBooks - чтение всех книг
             return View(books);
         }
 
+        //отображение пустой формы для создания книг
         public IActionResult Create()
         {
             var book = new Book();
             return View(book);
         }
 
+        //создания новой книги в хранилище, получены данные из формы
         [HttpPost]
         public IActionResult Create(Book bk)
         {
