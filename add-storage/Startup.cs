@@ -34,6 +34,8 @@ namespace add_storage
              * Нам нужно зарегистрировать IConfigurationRoot в контейнере, чтобы он мог обеспечить доступ к ключам из файлов JSON в проекте*/
             services.AddSingleton(typeof(ITableRepositories), typeof(TableClientOperationsService));
             services.AddSingleton<IConfigurationRoot>(Configuration);
+            /* •Singleton: объект сервиса создается при первом обращении к нему, все последующие запросы используют один и тот же ранее созданный объект сервиса
+             */
 
             // Add framework services.
             services.AddMvc();

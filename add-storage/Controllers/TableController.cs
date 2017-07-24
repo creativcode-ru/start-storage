@@ -21,6 +21,9 @@ namespace add_storage.Controllers
     public class TableController : Controller
     {
 
+        /*Контроллер содержит зависимость ITableRepositories,
+         а в SartUp указано, что ITableRepositories должен передать TableClientOperationsService как Singleton
+        */
         ITableRepositories serv;
         public TableController(ITableRepositories s)
         {
