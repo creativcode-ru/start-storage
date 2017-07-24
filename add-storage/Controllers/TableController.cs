@@ -22,6 +22,7 @@ namespace add_storage.Controllers
         {
             serv = s;
         }
+        /* * * * * подробнее в проекте DIApp * * * * */
 
         // GET: /<controller>/
         public IActionResult Index()

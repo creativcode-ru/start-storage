@@ -22,6 +22,8 @@ namespace add_storage
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            /* * * * * подробнее в проекте app-confg * * * * */
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -35,9 +37,11 @@ namespace add_storage
             services.AddSingleton(typeof(ITableRepositories), typeof(TableClientOperationsService));
             //по данным конфигурации из свойства Configuration создается объект IConfigurationRoot, 
             //который используется при создании класса TableClientOperationsService
-            services.AddSingleton<IConfigurationRoot>(Configuration); 
+            services.AddSingleton<IConfigurationRoot>(Configuration);
             /* •Singleton: объект сервиса создается при первом обращении к нему, все последующие запросы используют один и тот же ранее созданный объект сервиса
              */
+
+            /* * * * * подробнее в проекте DIApp * * * * */
 
             // Add framework services.
             services.AddMvc();

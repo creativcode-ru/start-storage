@@ -78,6 +78,7 @@ namespace app_config
             
             });
 
+            // Работа с конфигурацией https://metanit.com/sharp/aspnet5/2.17.php
         }
     }
 }

@@ -47,7 +47,7 @@ namespace add_storage.Repositories
         public TableClientOperationsService(IConfigurationRoot c)
         {
             this.configs = c;
-            var connStr = this.configs.GetSection("ConnectionStrings:start1storage_AzureStorageConnectionString");
+            var connStr = this.configs.GetSection("ConnectionStrings:start1storage_AzureStorageConnectionString"); //подробнее https://metanit.com/sharp/aspnet5/2.17.php
             storageAccount = CloudStorageAccount.Parse(connStr.Value);//учетная запись хранилища
 
             tableClient = storageAccount.CreateCloudTableClient();
