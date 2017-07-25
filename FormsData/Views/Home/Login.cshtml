@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+@*<form method="post">
+    <label>Логин:</label><br />
+    <input type="text" name="login" /><br /><br />
+    <label>Пароль:</label><br />
+    <input type="text" name="password" /><br /><br />
+    <input type="submit" value="Отправить" />
+</form>*@
+
+<form method="post">
+    <p>
+        <label>Логин:</label><br />
+        <input type="text" name="login" />
+    </p>
+
+    <p>
+        <label>Пароль:</label><br />
+        <input type="password" name="password" />
+    </p>
+
+    <p>
+        <label>Возраст:</label><br />
+        <input type="number" name="age" />
+    </p>
+    <p>
+        <label>Женат/Замужем:</label><br />
+        <input type="checkbox" name="isMarried" value="true" />
+    </p>
+    <p>
+        <label>Комментарий:</label><br />
+        <textarea name="comment"></textarea>
+    </p>
+    <p>
+        <input name="color" type="radio" value="red" />
+        <span>красный</span> <br />
+        <input name="color" type="radio" value="blue" />
+        <span>синий</span> <br />
+        <input checked="checked" name="color" type="radio" value="green" />
+        <span>зеленый</span>
+
+    </p>
+
+    <p>
+        <label for="phone">Выберите модель:</label>
+        <select name="phone">
+            <option value="iPhone 6S">Apple</option>
+            <option value="Lumia 950 XL">Microsoft</option>
+            <option value="HTC 10">HTC</option>
+            <option value="Galaxy EDGE S7">Samsung</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="phones">Выберите несколько моделей:</label><br />
+        <select multiple name="phones">
+            <option value="IPhone 6S">Apple</option>
+            <option value="Lumia 950 XL">Microsoft</option>
+            <option value="HTC 10">HTC</option>
+            <option value="Galaxy EDGE S7">Samsung</option>
+        </select>
+    </p>
+
+
+
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+</form>
+
+
+

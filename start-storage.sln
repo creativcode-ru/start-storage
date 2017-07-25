@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "add-storage", "add-storage\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "app-config", "app-config\app-config.csproj", "{D750DBAE-0D69-4595-B9C0-D113179BFE82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIApp", "DIApp\DIApp.csproj", "{DD6D299A-18D8-4BB0-AE47-D78E725D7B22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DIApp", "DIApp\DIApp.csproj", "{DD6D299A-18D8-4BB0-AE47-D78E725D7B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsData", "FormsData\FormsData.csproj", "{38D389C7-5770-4790-A2BD-C71B451B6A31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{DD6D299A-18D8-4BB0-AE47-D78E725D7B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD6D299A-18D8-4BB0-AE47-D78E725D7B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD6D299A-18D8-4BB0-AE47-D78E725D7B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D389C7-5770-4790-A2BD-C71B451B6A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D389C7-5770-4790-A2BD-C71B451B6A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D389C7-5770-4790-A2BD-C71B451B6A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D389C7-5770-4790-A2BD-C71B451B6A31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
