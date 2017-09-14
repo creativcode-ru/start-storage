@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "add-storage", "add-storage\add-storage.csproj", "{741FCD8B-DE3B-424B-AF38-E5C849815FC9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "app-config", "app-config\app-config.csproj", "{D750DBAE-0D69-4595-B9C0-D113179BFE82}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DIApp", "DIApp\DIApp.csproj", "{DD6D299A-18D8-4BB0-AE47-D78E725D7B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "storage-net", "storage-net\storage-net.csproj", "{BF345280-CCF5-4933-A2BC-00F58C1D06F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +29,15 @@ Global
 		{DD6D299A-18D8-4BB0-AE47-D78E725D7B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD6D299A-18D8-4BB0-AE47-D78E725D7B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD6D299A-18D8-4BB0-AE47-D78E725D7B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF345280-CCF5-4933-A2BC-00F58C1D06F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF345280-CCF5-4933-A2BC-00F58C1D06F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF345280-CCF5-4933-A2BC-00F58C1D06F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF345280-CCF5-4933-A2BC-00F58C1D06F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40C2668E-0786-43D9-A720-13D043E50CE3}
 	EndGlobalSection
 EndGlobal
