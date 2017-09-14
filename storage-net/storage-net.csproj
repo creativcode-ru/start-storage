@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
+    <RootNamespace>storage_net</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
