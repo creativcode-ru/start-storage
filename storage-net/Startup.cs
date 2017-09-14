@@ -13,26 +13,16 @@ namespace storage_net
 {
     public class Startup
     {
-        //public Startup(IConfiguration configuration)
-        //{
-        //    Configuration = configuration;
-        //}
-
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true) //читаем настройки конфирурации
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
-
-            /* * * * * подробнее в проекте app-confg * * * * */
+            Configuration = configuration;
         }
 
-        //public IConfiguration Configuration { get; }
 
-        public IConfigurationRoot Configuration { get; }
+
+        public IConfiguration Configuration { get; }
+
+
 
 
 

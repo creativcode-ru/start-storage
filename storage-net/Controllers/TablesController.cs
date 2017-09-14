@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.Azure;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,6 +15,14 @@ namespace storage_net.Controllers
 {
     public class TablesController : Controller
     {
+        #region * * * * * ИНЪЕКЦИЯ КОНФИГУРАЦИИ * * * * *
+        IConfiguration _configuration;
+        public TablesController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+        #endregion
+
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -25,8 +34,9 @@ namespace storage_net.Controllers
 
             //получите объект CloudStorageAccount, который представляет сведения об учетной записи хранения. 
             //Используйте следующий фрагмент кода, чтобы получить строку подключения к хранилищу и сведения об учетной записи хранения из конфигурации службы Azure.
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                CloudConfigurationManager.GetSetting("start1storage_AzureStorageConnectionString"));
+
+            string c = _configuration.GetConnectionString("start1storage_AzureStorageConnectionString");
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(c);
 
             //Получите объект CloudTableClient, представляющий клиент службы таблиц.
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
