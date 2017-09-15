@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-
-//сделано на основе описания https://docs.microsoft.com/ru-ru/azure/visual-studio/vs-storage-aspnet-getting-started-tables
-namespace storage_net
+namespace storage_core
 {
     public class Startup
     {
@@ -19,7 +17,6 @@ namespace storage_net
         }
 
         public IConfiguration Configuration { get; }
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)

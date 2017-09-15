@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "app-config", "app-config\ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DIApp", "DIApp\DIApp.csproj", "{DD6D299A-18D8-4BB0-AE47-D78E725D7B22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "storage-net", "storage-net\storage-net.csproj", "{BF345280-CCF5-4933-A2BC-00F58C1D06F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "storage-net", "storage-net\storage-net.csproj", "{BF345280-CCF5-4933-A2BC-00F58C1D06F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StogageNetData", "StogageNetData\StogageNetData.csproj", "{CA2D2499-3344-496A-BD25-2753488AEF12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorage", "AzureStorage\AzureStorage.csproj", "{07C37469-FDE3-4537-B16C-2241B237B6EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "storage-core", "storage-core\storage-core.csproj", "{F853CF05-487C-4C81-AF76-ACCA5624C20E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +37,14 @@ Global
 		{BF345280-CCF5-4933-A2BC-00F58C1D06F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF345280-CCF5-4933-A2BC-00F58C1D06F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF345280-CCF5-4933-A2BC-00F58C1D06F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA2D2499-3344-496A-BD25-2753488AEF12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA2D2499-3344-496A-BD25-2753488AEF12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA2D2499-3344-496A-BD25-2753488AEF12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA2D2499-3344-496A-BD25-2753488AEF12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C37469-FDE3-4537-B16C-2241B237B6EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C37469-FDE3-4537-B16C-2241B237B6EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C37469-FDE3-4537-B16C-2241B237B6EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C37469-FDE3-4537-B16C-2241B237B6EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F853CF05-487C-4C81-AF76-ACCA5624C20E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F853CF05-487C-4C81-AF76-ACCA5624C20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F853CF05-487C-4C81-AF76-ACCA5624C20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F853CF05-487C-4C81-AF76-ACCA5624C20E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
