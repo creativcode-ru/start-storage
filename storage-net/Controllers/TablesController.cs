@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.Extensions.Configuration;
 using AzureStorage;
+using AzureStorage.Models;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -30,6 +31,8 @@ namespace storage_net.Controllers
             return View();
         }
 
+
+        string _tableName = "TestTable";
         public ActionResult CreateTable()
         {
 
@@ -38,26 +41,21 @@ namespace storage_net.Controllers
 
             string c = _configuration.GetConnectionString("start1storage_AzureStorageConnectionString");
             string tableName = "TestTable2";
-            ViewBag.Success =TableRepository.CreateTable(c, tableName);
-            ViewBag.TableName = tableName;
+            ViewBag.Success =TableRepository.CreateTable(c, _tableName);
+            ViewBag.TableName = _tableName;
 
-            /*
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(c);
+            return View();
+        }
 
-            //Получите объект CloudTableClient, представляющий клиент службы таблиц.
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+        public ActionResult AddEntity()
+        {
+            //Создайте и инициализируйте класс CustomerEntity.
+            CustomerEntity customer = new CustomerEntity("Harp", "Walter");
+            customer.Email = "Walter@contoso.com";
 
-            //Получите объект CloudTable, представляющий ссылку на требуемое имя таблицы. 
-            //Метод CloudBlobClient.GetContainerReference не выполняет запрос в отношении хранилища таблиц. 
-            //Ссылка возвращается независимо от существования таблицы.
-            CloudTable table = tableClient.GetTableReference("TestTable");
-
-            //Вызовите метод CloudTable.CreateIfNotExists, чтобы создать таблицу, если она еще не создана. 
-            //Метод CloudTable.CreateIfNotExists возвращает значение true, если таблица существует или успешно создана.
-            //В противном случае возвращается значение false.
-            ViewBag.Success = table.CreateIfNotExists();
-            ViewBag.TableName = table.Name; */
-
+            string c = _configuration.GetConnectionString("start1storage_AzureStorageConnectionString");
+            ViewBag.TableName = _tableName;
+            ViewBag.Result = TableRepository.AddCustomer(c, _tableName, customer);
             return View();
         }
 

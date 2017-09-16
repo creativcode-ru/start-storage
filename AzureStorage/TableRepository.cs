@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using AzureStorage.Models;
+using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,8 @@ namespace AzureStorage
 {
     public class TableRepository
     {
-        public static bool CreateTable(string connection, string tableName)
+
+        static CloudTable TableReference(string connection, string tableName)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connection);
 
@@ -20,12 +22,33 @@ namespace AzureStorage
             //Получите объект CloudTable, представляющий ссылку на требуемое имя таблицы. 
             //Метод CloudBlobClient.GetContainerReference не выполняет запрос в отношении хранилища таблиц. 
             //Ссылка возвращается независимо от существования таблицы.
-            CloudTable table = tableClient.GetTableReference(tableName);
+            return tableClient.GetTableReference(tableName);
+        }
+
+        public static bool CreateTable(string connection, string tableName)
+        {
+            CloudTable table = TableReference(connection, tableName);
 
             //Вызовите метод CloudTable.CreateIfNotExists, чтобы создать таблицу, если она еще не создана. 
             //Метод CloudTable.CreateIfNotExists возвращает значение true, если таблица существует или успешно создана.
             //В противном случае возвращается значение false. 
             return table.CreateIfNotExists();
+        }
+        public static int AddCustomer(string connection, string tableName, CustomerEntity сustomer)
+        {
+            CloudTable table = TableReference(connection, tableName);
+
+            //Создайте объект TableOperation, который вставляет пользовательскую сущность.
+            TableOperation insertOperation = TableOperation.Insert(сustomer);
+
+            //Выполните операцию вставки, вызвав метод CloudTable.Execute. 
+            //Результат операции можно узнать, проверив значение свойства TableResult.HttpStatusCode.
+            //Код состояния 2xx означает, что запрошенное клиентом действие обработано успешно. 
+            //Например, успешная вставка новых сущностей выводит код состояния HTTP 204. 
+            //Это значит, что операция обработана и сервер не вернул содержимое.
+            TableResult result = table.Execute(insertOperation);
+            return result.HttpStatusCode;
+            
         }
     }
 }
