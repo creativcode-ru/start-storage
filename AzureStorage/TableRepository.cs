@@ -50,5 +50,33 @@ namespace AzureStorage
             return result.HttpStatusCode;
             
         }
+        
+
+        public static List<int> AddBatch(string connection, string tableName, List<CustomerEntity> сustomers)
+        {
+            CloudTable table = TableReference(connection, tableName);
+
+            // Получите объект TableBatchOperation
+            TableBatchOperation batchOperation = new TableBatchOperation();
+
+            //Добавьте сущности в объект пакетной операции вставки.
+            foreach (CustomerEntity customer in сustomers)
+            {
+                batchOperation.Insert(customer);
+            }
+
+            //Выполните пакетную операцию вставки, вызвав метод CloudTable.ExecuteBatch.
+            IList<TableResult> results = table.ExecuteBatch(batchOperation);
+
+            List<int> statusCodes = new List<int>();
+            foreach (TableResult result in results)
+            {
+                statusCodes.Add(result.HttpStatusCode);
+            }
+
+            return statusCodes;
+
+        }
+
     }
 }

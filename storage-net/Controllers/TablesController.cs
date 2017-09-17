@@ -59,5 +59,26 @@ namespace storage_net.Controllers
             return View();
         }
 
+        public ActionResult AddBatch()
+        {
+
+            List<CustomerEntity> customers = new List<CustomerEntity>();
+            CustomerEntity customer1 = new CustomerEntity("Smith", "Jeff");
+            customer1.Email = "Jeff@contoso.com";
+            customers.Add(customer1);
+
+            CustomerEntity customer2 = new CustomerEntity("Smith", "Ben");
+            customer2.Email = "Ben@contoso.com";
+            customers.Add(customer2);
+
+
+            string c = _configuration.GetConnectionString("start1storage_AzureStorageConnectionString");
+            ViewBag.TableName = _tableName;
+            List<int> results= TableRepository.AddBatch(c, _tableName, customers);
+
+            return View(results);
+        }
+
+
     }
 }
