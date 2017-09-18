@@ -18,6 +18,13 @@ namespace AzureStorage.Models
         public CustomerEntity() { }
 
         public string Email { get; set; }
+
+
+
+        //public static implicit operator CustomerEntity(TableResult v)
+        //{//приведение классов
+        //    throw new NotImplementedException();
+        //}
     }
 
 }

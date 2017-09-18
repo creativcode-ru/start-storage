@@ -47,6 +47,8 @@ namespace storage_net.Controllers
             return View();
         }
 
+        #region -------------------------------------- Запись -------------------------------------------------------------------
+
         public ActionResult AddEntity()
         {
             //Создайте и инициализируйте класс CustomerEntity.
@@ -79,6 +81,21 @@ namespace storage_net.Controllers
             return View(results);
         }
 
+
+        #endregion
+
+        #region ------------------------------------ Чтение -----------------------------------------------------------------------
+        public ActionResult GetSingle()
+        {
+            // Создайте объект операции извлечения, который принимает объект сущности, производный от TableEntity. Первый параметр — ключ раздела partitionKey, а второй — ключ строки rowKey. Используя класс CustomerEntity и данные, представленные в разделе Добавление пакета сущностей в таблицу, следующий фрагмент кода направляет запрос к таблице на получение сущности CustomerEntity, свойство partitionKey которой имеет значение Smith, а свойство rowKey — значение Ben
+            string c = _configuration.GetConnectionString("start1storage_AzureStorageConnectionString");
+            ViewBag.TableName = _tableName;
+            CustomerEntity customer = TableRepository.ReadCustomer(c, _tableName, "Smith", "Ben");
+
+            return View(customer);
+        }
+
+        #endregion
 
     }
 }

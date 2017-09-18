@@ -34,6 +34,9 @@ namespace AzureStorage
             //В противном случае возвращается значение false. 
             return table.CreateIfNotExists();
         }
+
+        #region ---------------------------------------------- Запись ------------------------------------------------------------
+
         public static int AddCustomer(string connection, string tableName, CustomerEntity сustomer)
         {
             CloudTable table = TableReference(connection, tableName);
@@ -77,6 +80,27 @@ namespace AzureStorage
             return statusCodes;
 
         }
+
+        #endregion
+
+        #region ------------------------------------------------ Чтение --------------------------------------------------------------
+        public static CustomerEntity ReadCustomer(string connection, string tableName, string partKey, string rowKey)
+        {
+            CloudTable table = TableReference(connection, tableName);
+
+            //Создайте объект операции извлечения, который принимает объект сущности, производный от TableEntity.
+            //Первый параметр — ключ раздела partitionKey, а второй — ключ строки rowKey.
+            TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>(partKey, rowKey);
+
+            //Выполните операцию извлечения.
+            CustomerEntity сustomer = null;
+            сustomer = table.Execute(retrieveOperation).Result as CustomerEntity;
+           
+            return сustomer;
+        }
+
+
+        #endregion
 
     }
 }

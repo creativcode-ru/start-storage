@@ -1,0 +1,23 @@
+﻿@model AzureStorage.Models.CustomerEntity
+@{
+    ViewBag.Title = "GetSingle";
+}
+
+<h2>Get Single results</h2>
+
+<table border="1">
+    <tr>
+        <th>HTTP result</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+    </tr>
+    <tr>
+        @*<td>@Model.HttpStatusCode</td>*@
+        <td>*</td>
+        <td>@Model.RowKey</td>
+        <td>@Model.PartitionKey)</td>
+        <td>@Model.Email)</td>
+    </tr>
+</table>
+
