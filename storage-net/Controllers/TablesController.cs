@@ -89,11 +89,20 @@ namespace storage_net.Controllers
         {
             // Создайте объект операции извлечения, который принимает объект сущности, производный от TableEntity. Первый параметр — ключ раздела partitionKey, а второй — ключ строки rowKey. Используя класс CustomerEntity и данные, представленные в разделе Добавление пакета сущностей в таблицу, следующий фрагмент кода направляет запрос к таблице на получение сущности CustomerEntity, свойство partitionKey которой имеет значение Smith, а свойство rowKey — значение Ben
             string c = _configuration.GetConnectionString("start1storage_AzureStorageConnectionString");
-            ViewBag.TableName = _tableName;
             CustomerEntity customer = TableRepository.ReadCustomer(c, _tableName, "Smith", "Ben");
 
             return View(customer);
         }
+
+        public ActionResult GetPartition()
+        {
+            string c = _configuration.GetConnectionString("start1storage_AzureStorageConnectionString");
+            List<CustomerEntity> customers = TableRepository.ReadPartition(c, _tableName, "Smith");
+
+            return View(customers);
+
+        }
+
 
         #endregion
 

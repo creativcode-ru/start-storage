@@ -51,9 +51,9 @@ namespace AzureStorage
             //Это значит, что операция обработана и сервер не вернул содержимое.
             TableResult result = table.Execute(insertOperation);
             return result.HttpStatusCode;
-            
+
         }
-        
+
 
         public static List<int> AddBatch(string connection, string tableName, List<CustomerEntity> сustomers)
         {
@@ -95,9 +95,46 @@ namespace AzureStorage
             //Выполните операцию извлечения.
             CustomerEntity сustomer = null;
             сustomer = table.Execute(retrieveOperation).Result as CustomerEntity;
-           
+
             return сustomer;
         }
+
+
+
+        public static List<CustomerEntity> ReadPartition(string connection, string tableName, string partKey)
+        {
+            CloudTable table = TableReference(connection, tableName);
+
+            //Создайте экземпляр объекта TableQuery, поместив запрос в предложение Where.Используя класс CustomerEntity и данные, 
+            //представленные в разделе Добавление пакета сущностей в таблицу, 
+            //следующий фрагмент кода направляет запрос к таблице на получение всех сущностей, 
+            //свойство PartitionKey(фамилия пользователя) которых имеет значение Smith.
+            TableQuery<CustomerEntity> query =  new TableQuery<CustomerEntity>()
+                                        .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partKey));
+
+            //В цикле вызовите метод CloudTable.ExecuteQuerySegmented, передавая ему экземпляр объекта запроса, 
+            //который вы создали на предыдущем шаге.
+            //Метод CloudTable.ExecuteQuerySegmented возвращает объект TableContinuationToken. 
+            //Этот объект будет иметь значение null, когда нет больше сущностей для извлечения. 
+            //В цикле используйте другой цикл для перечисления возвращаемых сущностей.
+            //В следующем примере кода каждая возвращенная сущность добавляется в список. 
+            //Когда цикл завершается, список передается в представление для отображения:
+            List<CustomerEntity> customers = new List<CustomerEntity>();
+            TableContinuationToken token = null;
+            do
+            {
+                TableQuerySegment<CustomerEntity> resultSegment = table.ExecuteQuerySegmented(query, token);
+                token = resultSegment.ContinuationToken;
+
+                foreach (CustomerEntity customer in resultSegment.Results)
+                {
+                    customers.Add(customer);
+                }
+            } while (token != null);
+
+            return customers;
+        }
+
 
 
         #endregion
