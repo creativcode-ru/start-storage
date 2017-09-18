@@ -40,14 +40,13 @@ namespace storage_net.Controllers
             //Используйте следующий фрагмент кода, чтобы получить строку подключения к хранилищу и сведения об учетной записи хранения из конфигурации службы Azure.
 
             string c = _configuration.GetConnectionString("start1storage_AzureStorageConnectionString");
-            string tableName = "TestTable2";
             ViewBag.Success =TableRepository.CreateTable(c, _tableName);
             ViewBag.TableName = _tableName;
 
             return View();
         }
 
-        #region -------------------------------------- Запись -------------------------------------------------------------------
+        #region -------------------------------------- Запись/Удаление -------------------------------------------------------------------
 
         public ActionResult AddEntity()
         {
@@ -79,6 +78,14 @@ namespace storage_net.Controllers
             List<int> results= TableRepository.AddBatch(c, _tableName, customers);
 
             return View(results);
+        }
+
+        public ActionResult DeleteEntity()
+        {
+            string c = _configuration.GetConnectionString("start1storage_AzureStorageConnectionString");
+            ViewBag.TableName = _tableName;
+            ViewBag.Result = TableRepository.DeleteCustomer(c, _tableName, "Smith", "Ben");
+            return View();
         }
 
 

@@ -12,6 +12,7 @@ namespace AzureStorage
     public class TableRepository
     {
 
+        #region ----------------------------- Создать / Удалить таблицу ---------------------------------------------------------------------
         static CloudTable TableReference(string connection, string tableName)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connection);
@@ -24,6 +25,7 @@ namespace AzureStorage
             //Ссылка возвращается независимо от существования таблицы.
             return tableClient.GetTableReference(tableName);
         }
+        #endregion
 
         public static bool CreateTable(string connection, string tableName)
         {
@@ -35,7 +37,7 @@ namespace AzureStorage
             return table.CreateIfNotExists();
         }
 
-        #region ---------------------------------------------- Запись ------------------------------------------------------------
+        #region ---------------------------------------------- Запись в таблицу ------------------------------------------------------------
 
         public static int AddCustomer(string connection, string tableName, CustomerEntity сustomer)
         {
@@ -53,6 +55,8 @@ namespace AzureStorage
             return result.HttpStatusCode;
 
         }
+
+
 
 
         public static List<int> AddBatch(string connection, string tableName, List<CustomerEntity> сustomers)
@@ -83,7 +87,7 @@ namespace AzureStorage
 
         #endregion
 
-        #region ------------------------------------------------ Чтение --------------------------------------------------------------
+        #region ------------------------------------------------ Чтение / удаление из таблицы --------------------------------------------------------------
         public static CustomerEntity ReadCustomer(string connection, string tableName, string partKey, string rowKey)
         {
             CloudTable table = TableReference(connection, tableName);
@@ -135,7 +139,22 @@ namespace AzureStorage
             return customers;
         }
 
+        public static CustomerEntity DeleteCustomer(string connection, string tableName, string partKey, string rowKey)
+        {
+            CloudTable table = TableReference(connection, tableName);
 
+            //Создайте объект операции удаления, который принимает объект сущности, производный от TableEntity.
+            //В этом случае используется класс CustomerEntity и данные, представленные в разделе Добавление пакета сущностей в таблицу. 
+            //ETag сущности должно быть присвоено допустимое значение.
+            TableOperation deleteOperation = TableOperation.Delete(new CustomerEntity(partKey, rowKey) { ETag = "*" });
+
+            //Выполните операцию удаления. Одновременно извлекается удаленная сущьность. 
+            CustomerEntity сustomer = null;
+            сustomer = table.Execute(deleteOperation).Result as CustomerEntity;
+
+            return сustomer;
+
+        }
 
         #endregion
 
